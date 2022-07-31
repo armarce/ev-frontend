@@ -1,7 +1,7 @@
 let  listTasks = (name) =>{
     
     let token = localStorage.getItem('token');
-    
+
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Authorization", 'Bearer ' + token);
@@ -156,7 +156,7 @@ let editTask = (id, reload) =>{
         document.querySelector("#modal form").addEventListener("submit", function(event) {
             event.preventDefault();
         });
-
+        
     }
     
     let modalContainer = document.getElementById("modal");
@@ -202,6 +202,8 @@ let editTask = (id, reload) =>{
         
       })
       .catch();
+
+      countCharacters();
 
 }
 
