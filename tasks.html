@@ -13,24 +13,10 @@
             <a href="#" id="user"></a>
             <h1>Tareas</h1>
             <input type="search" placeholder="Buscar Tarea"/>
-            <a href="#" id="new-task">Crear nueva tarea</a>
+            <a href="#" id="new-task" onclick="createTaskModal();">Crear nueva tarea</a>
         </header>
         <main>
             <ul id="tasks">
-                <template>
-                    <li class="start">
-                        <nav><h2>Tare1</h2><div><a href="#" class="del"></a><a href="#" class="edit"></a></div></nav>
-                        <span>DESCRIPCIÓN</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa
-                        </p>
-                        <select>
-                            <option value="3">Terminada</option>
-                            <option value="1">Iniciada</option>
-                            <option value="2">En pausa</option>
-                        </select>
-                    </li>
-                </template>   
             </ul>
         </main>
         <div id="modal">

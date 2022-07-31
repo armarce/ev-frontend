@@ -147,7 +147,7 @@ let editTask = (id, reload) =>{
     
     let modalContainer = document.getElementById("modal");
     modalContainer.style.display = 'block';
-    
+
     let token = localStorage.getItem('token');
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
@@ -178,7 +178,7 @@ let editTask = (id, reload) =>{
                             <span id="description-counter">0/150</span>
                             <div id="btns">
                                 <input type="submit" name="cancel" value="Cancelar" onclick="editTask(${task.id}, true);"/>
-                                <input type="submit" name="save" value="Guardar cambios" onclick="updateTask(${task.id})"/>
+                                <input type="submit" name="save" value="Guardar cambios" onclick="updateTask(${task.id});"/>
                             </div>
                         </fieldset>
                     </form>
@@ -189,6 +189,74 @@ let editTask = (id, reload) =>{
       })
       .catch(error => console.log('error', error));
 
+}
+
+let createTaskModal = () =>{
+    
+    let modalContainer = document.getElementById("modal");
+    modalContainer.style.display = 'block';
+
+    let modal = `
+                <div id="modal-container">
+                <a id="close" onclick="closeModal();">
+                </a>
+                <h2>Crear tarea</h2>
+                <form>
+                    <fieldset>
+                        <label for="name">Nombre de la tarea</label>
+                        <input type="input" name="name" placeholder="Escribe el nombre de la tarea"/>
+                        <span id="name-counter">0/50</span>
+                        <label for="description">Descripción</label>
+                        <textarea name="description" placeholder="Escribe la descripción de la tarea"></textarea>
+                        <span id="description-counter">0/150</span>
+                        <div id="btns">
+                            <input type="submit" name="cancel" value="Cancelar" onclick="closeModal()"/>
+                            <input type="submit" name="save" value="Guardar cambios" onclick="createTask();"/>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>`;
+            
+    modalContainer.innerHTML = modal;
+
+}
+
+let createTask = () => {
+
+    document.querySelector("#modal form").addEventListener("submit", function(event) {
+        
+        let name = document.querySelector("#modal input[name=name]").value;
+        let description = document.querySelector("#modal form textarea[name=description]").value;    
+
+        let token = localStorage.getItem('token');
+        let myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Authorization", 'Bearer ' + token);
+        
+        let urlencoded = new URLSearchParams();
+        urlencoded.append("name", name);
+        urlencoded.append("description", description);
+        
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+        
+        fetch("https://tasks-crud.academlo.com/api/tasks", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            closeModal();
+            listTasks();
+
+        })
+        .catch(error => console.log('error', error));
+
+        event.preventDefault();
+
+    });
+    
 }
 
 let updateTask = (id) =>{
@@ -263,5 +331,8 @@ let login = () =>{
 }
 
 let closeModal = () =>{
+    document.querySelector("#modal form").addEventListener("submit", function(event) {
+        event.preventDefault();
+    });    
     document.getElementById("modal").style.display = 'none';
 }
