@@ -171,10 +171,10 @@ let editTask = (id, reload) =>{
                     <form>
                         <fieldset>
                             <label for="name">Nombre de la tarea</label>
-                            <input type="input" name="name" placeholder="Escribe el nombre de la tarea" value="${task.name}"/>
+                            <input type="input" name="name" maxlength="50" placeholder="Escribe el nombre de la tarea" value="${task.name}"/>
                             <span id="name-counter">0/50</span>
                             <label for="description">Descripción</label>
-                            <textarea name="description" placeholder="Escribe la descripción de la tarea">${task.description}</textarea>
+                            <textarea name="description" maxlength="150" placeholder="Escribe la descripción de la tarea">${task.description}</textarea>
                             <span id="description-counter">0/150</span>
                             <div id="btns">
                                 <input type="submit" name="cancel" value="Cancelar" onclick="editTask(${task.id}, true);"/>
@@ -204,10 +204,10 @@ let createTaskModal = () =>{
                 <form>
                     <fieldset>
                         <label for="name">Nombre de la tarea</label>
-                        <input type="input" name="name" placeholder="Escribe el nombre de la tarea"/>
+                        <input type="input" name="name" maxlength="50" placeholder="Escribe el nombre de la tarea"/>
                         <span id="name-counter">0/50</span>
                         <label for="description">Descripción</label>
-                        <textarea name="description" placeholder="Escribe la descripción de la tarea"></textarea>
+                        <textarea name="description" maxlength="150" placeholder="Escribe la descripción de la tarea"></textarea>
                         <span id="description-counter">0/150</span>
                         <div id="btns">
                             <input type="submit" name="cancel" value="Cancelar" onclick="closeModal()"/>
@@ -219,6 +219,28 @@ let createTaskModal = () =>{
             
     modalContainer.innerHTML = modal;
 
+    countCharacters();
+
+}
+
+let countCharacters = () =>{
+
+    let inputName = document.querySelector("#modal input[name=name]");
+    let nameCounter = document.querySelector("#modal #name-counter");
+
+    let textareaDescription = document.querySelector("#modal textarea[name=description]");
+    let descriptionCounter = document.querySelector("#modal #description-counter");
+
+    inputName.addEventListener("input", function(event){
+        let totalChars = inputName.value.length;
+        nameCounter.innerHTML = `${totalChars}/50`;
+    });
+    
+    textareaDescription.addEventListener("input", function(event){
+        let totalChars = textareaDescription.value.length;
+        descriptionCounter.innerHTML = `${totalChars}/150`;
+    });
+    
 }
 
 let createTask = () => {
