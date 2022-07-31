@@ -71,7 +71,7 @@ let  listTasks = () =>{
                     <h2>${task.name}</h2>
                     <div>
                         <a href="#" class="del" onclick="deleteTask(${task.id});"></a>
-                        <a href="#" class="edit" onclick="editTask(${task.id});"></a>
+                        <a href="#" class="edit" onclick="editTask(${task.id}, false);"></a>
                     </div>
                 </nav>
                 <span>DESCRIPCIÓN</span>
@@ -135,11 +135,19 @@ let deleteTask = (id) =>{
 
 }
 
-let editTask = (id) =>{
+let editTask = (id, reload) =>{
+
+    if(reload){
+
+        document.querySelector("#modal form").addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+
+    }
     
     let modalContainer = document.getElementById("modal");
     modalContainer.style.display = 'block';
-
+    
     let token = localStorage.getItem('token');
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
@@ -157,35 +165,69 @@ let editTask = (id) =>{
 
         let modal = `
                     <div id="modal-container">
-                    <a id="close">
+                    <a id="close" onclick="closeModal();">
                     </a>
                     <h2>Editar tarea</h2>
                     <form>
                         <fieldset>
                             <label for="name">Nombre de la tarea</label>
-                            <input type="input" placeholder="Escribe el nombre de la tarea" value="${task.name}"/>
+                            <input type="input" name="name" placeholder="Escribe el nombre de la tarea" value="${task.name}"/>
                             <span id="name-counter">0/50</span>
                             <label for="description">Descripción</label>
                             <textarea name="description" placeholder="Escribe la descripción de la tarea">${task.description}</textarea>
                             <span id="description-counter">0/150</span>
                             <div id="btns">
-                                <input type="submit" name="cancel" value="Cancelar"/>
-                                <input type="submit" name="save" value="Guardar cambios"/>
+                                <input type="submit" name="cancel" value="Cancelar" onclick="editTask(${task.id}, true);"/>
+                                <input type="submit" name="save" value="Guardar cambios" onclick="updateTask(${task.id})"/>
                             </div>
-                            <input type="hidden" name="id" value="${task.id}"/>
                         </fieldset>
                     </form>
                 </div>`;
-
+                
             modalContainer.innerHTML = modal;
-
-
+        
       })
       .catch(error => console.log('error', error));
+
+}
+
+let updateTask = (id) =>{
     
+    document.querySelector("#modal form").addEventListener("submit", function(event) {
+        
+        let name = document.querySelector("#modal input[name=name]").value;
+        let description = document.querySelector("#modal form textarea[name=description]").value;
 
+        let token = localStorage.getItem('token');
+        let myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Authorization", 'Bearer ' + token);
+        
+        let urlencoded = new URLSearchParams();
+        urlencoded.append("name", name);
+        urlencoded.append("description", description);
+        
+        let requestOptions = {
+          method: 'PUT',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow'
+        };
+        
+        fetch(`https://tasks-crud.academlo.com/api/tasks/${id}`, requestOptions)
+          .then(response => response.text())
+          .then(result => {
 
+            closeModal();
+            listTasks();
 
+          })
+          .catch(error => console.log('error', error));        
+        
+        event.preventDefault();
+
+    });
+    
 }
 
 let login = () =>{
@@ -218,4 +260,8 @@ let login = () =>{
     event.preventDefault();
     });
     
+}
+
+let closeModal = () =>{
+    document.getElementById("modal").style.display = 'none';
 }
