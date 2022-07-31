@@ -1,7 +1,7 @@
 let  listTasks = (name) =>{
     
     let token = localStorage.getItem('token');
-    //console.log(token);
+    
     let myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Authorization", 'Bearer ' + token);
@@ -92,7 +92,7 @@ let  listTasks = (name) =>{
         tasksContainer.innerHTML = html;
 
       })
-      .catch(error => console.log('error', error));
+      .catch();
 
 }
 
@@ -122,7 +122,7 @@ let updateStatus = (id, id_status) => {
       .then(result => {
         listTasks();
       })
-      .catch(error => console.log('error', error));    
+      .catch();    
 
 }
 
@@ -145,7 +145,7 @@ let deleteTask = (id) =>{
         listTasks();
 
     })
-    .catch(error => console.log('error', error));
+    .catch();
 
 }
 
@@ -201,7 +201,7 @@ let editTask = (id, reload) =>{
             modalContainer.innerHTML = modal;
         
       })
-      .catch(error => console.log('error', error));
+      .catch();
 
 }
 
@@ -287,7 +287,7 @@ let createTask = () => {
             listTasks();
 
         })
-        .catch(error => console.log('error', error));
+        .catch();
 
         event.preventDefault();
 
@@ -326,7 +326,7 @@ let updateTask = (id) =>{
             listTasks();
 
           })
-          .catch(error => console.log('error', error));        
+          .catch();        
         
         event.preventDefault();
 
