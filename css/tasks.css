@@ -121,7 +121,6 @@ main ul#tasks li{
 main ul#tasks li h2{
     font-size: 25px;
     width: 24rem;
-    margin-bottom: 3rem;
 }
 main ul#tasks li span{
     color: var(--gray);
@@ -148,7 +147,7 @@ main ul#tasks li nav{
     box-sizing: border-box;
     justify-content: space-between;
     height: 4rem;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 3rem 0;
 }
 main ul#tasks li nav div{
     display: flex;
