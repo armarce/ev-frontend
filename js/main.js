@@ -357,9 +357,33 @@ let login = () =>{
     fetch("https://tasks-crud.academlo.com/api/auth/login", requestOptions)
         .then(response => response.text())
         .then(result => {
-        localStorage.setItem('token', result);
-        window.location.replace('tasks.html');
-    }).catch(error => console.log('error', error));
+
+            let errorContainer = document.querySelector("#log-in .error");
+
+            try{
+
+                JSON.parse(result);
+
+                errorContainer.style.display = 'block';
+                errorContainer.innerHTML = 'Email o Contraseña inválidos';
+
+            }catch(e){
+
+                if(result === 'Credenciales incorrectas'){
+
+                    errorContainer.style.display = 'block';
+                    errorContainer.innerHTML = result;
+
+                }else{
+
+                    localStorage.setItem('token', result);
+                    window.location.replace('tasks.html');
+
+                }
+
+            }
+
+    }).catch(error => error);
 
     event.preventDefault();
     });

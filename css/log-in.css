@@ -10,6 +10,7 @@
     --typography: #302F2F;
     --dark-gray: #D3D3D3; 
     --gray: #CCCCCC;
+    --red: #ff4d4d;
 }
 html{
     font-size: 62.5%;
@@ -120,4 +121,10 @@ main{
 #log-in fieldset input[type="submit"]{
     background-color: var(--light-green);
     color: var(--white);
+}
+#log-in .error{
+    display: none;
+    margin-top: 2rem;
+    height: 2rem;
+    color: var(--red);
 }

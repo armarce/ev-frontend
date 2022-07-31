@@ -101,7 +101,7 @@ header a#new-task img{
 main{
     max-width: 130rem;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 2rem 10rem 2rem;
 }
 main ul#tasks{
     padding: 0;
