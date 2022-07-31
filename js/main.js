@@ -289,11 +289,11 @@ let createTask = () => {
         };
         
         fetch("https://tasks-crud.academlo.com/api/tasks", requestOptions)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
+            updateStatus(result.id, 1);
             closeModal();
             listTasks();
-
         })
         .catch();
 
