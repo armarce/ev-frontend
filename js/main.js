@@ -156,7 +156,7 @@ let editTask = (id, reload) =>{
         document.querySelector("#modal form").addEventListener("submit", function(event) {
             event.preventDefault();
         });
-        
+
     }
     
     let modalContainer = document.getElementById("modal");
@@ -199,11 +199,13 @@ let editTask = (id, reload) =>{
                 </div>`;
                 
             modalContainer.innerHTML = modal;
+
+            countCharacters();
         
       })
       .catch();
 
-      countCharacters();
+      
 
 }
 
@@ -243,18 +245,22 @@ let countCharacters = () =>{
 
     let inputName = document.querySelector("#modal input[name=name]");
     let nameCounter = document.querySelector("#modal #name-counter");
-
+    let totalCharsName = inputName.value.length;
+    nameCounter.innerHTML = `${totalCharsName}/50`;
+    
     let textareaDescription = document.querySelector("#modal textarea[name=description]");
     let descriptionCounter = document.querySelector("#modal #description-counter");
-
+    let totalCharsDescription = textareaDescription.value.length;
+    descriptionCounter.innerHTML = `${totalCharsDescription}/150`;
+    
     inputName.addEventListener("input", function(event){
-        let totalChars = inputName.value.length;
-        nameCounter.innerHTML = `${totalChars}/50`;
+        totalCharsName = inputName.value.length;
+        nameCounter.innerHTML = `${totalCharsName}/50`;
     });
     
     textareaDescription.addEventListener("input", function(event){
-        let totalChars = textareaDescription.value.length;
-        descriptionCounter.innerHTML = `${totalChars}/150`;
+        totalCharsDescription = textareaDescription.value.length;
+        descriptionCounter.innerHTML = `${totalCharsDescription}/150`;
     });
     
 }
