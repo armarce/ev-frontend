@@ -1,4 +1,4 @@
-let  listTasks = () =>{
+let  listTasks = (name) =>{
     
     let token = localStorage.getItem('token');
     //console.log(token);
@@ -17,6 +17,12 @@ let  listTasks = () =>{
       .then(tasks => {
         let tasksContainer = document.getElementById("tasks");
         let html = '';
+
+        if(name){
+
+            tasks = tasks.filter(task => task.name.toLowerCase().includes(name.toLowerCase()));
+
+        }
 
         for(let task of tasks){
             
@@ -88,6 +94,14 @@ let  listTasks = () =>{
       })
       .catch(error => console.log('error', error));
 
+}
+
+let searchTask = (event) => {
+
+    let name = event.target.value;
+
+    listTasks(name);
+    
 }
 
 let updateStatus = (id, id_status) => {

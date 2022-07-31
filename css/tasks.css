@@ -79,16 +79,24 @@ header input{
 }
 header a#new-task{
     grid-area: new-task;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 4.6rem;
-    padding: 1.4rem 0 0 6.2rem;
     box-sizing: border-box;
     background-color: var(--tasks-green);
     text-decoration: none;
     color: var(--white);
-    background-image: url(../img/plus.svg);
+    padding: 1rem;
+    /*background-image: url(../img/plus.svg);
     background-position: 3rem 1rem;
     background-repeat: no-repeat;
+    */
+}
+header a#new-task img{
+    padding-right: 1rem;
 }
 main{
     max-width: 130rem;
@@ -263,4 +271,27 @@ main ul#tasks li nav a:hover{
 #modal #modal-container fieldset #btns input[name="save"]{
     background-color: var(--light-green);
     color: var(--white);
+}
+
+@media (max-width: 130rem) {
+    header{
+        grid-template-areas: ". . . . . .  . . . user"
+                             "title . . . . . . . search new-task";
+        grid-template-areas: repeat(10, 1fr);
+    }
+}
+@media (max-width: 99rem) {	
+    header{
+        grid-template-areas: ". . . . . user"
+                             "title . . . search new-task";
+        grid-template-areas: repeat(6, 1fr);
+    }
+}
+@media (max-width: 37rem) {
+    header{
+        grid-template-areas: ". user"
+                             "title title"
+                             "search new-task";
+        grid-template-areas: repeat(2, 1fr);
+    }
 }
