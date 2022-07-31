@@ -135,6 +135,59 @@ let deleteTask = (id) =>{
 
 }
 
+let editTask = (id) =>{
+    
+    let modalContainer = document.getElementById("modal");
+    modalContainer.style.display = 'block';
+
+    let token = localStorage.getItem('token');
+    let myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Authorization", 'Bearer ' + token);
+    
+    let requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    
+    fetch(`https://tasks-crud.academlo.com/api/tasks/${id}`, requestOptions)
+      .then(response => response.json())
+      .then(task => {
+
+        let modal = `
+                    <div id="modal-container">
+                    <a id="close">
+                    </a>
+                    <h2>Editar tarea</h2>
+                    <form>
+                        <fieldset>
+                            <label for="name">Nombre de la tarea</label>
+                            <input type="input" placeholder="Escribe el nombre de la tarea" value="${task.name}"/>
+                            <span id="name-counter">0/50</span>
+                            <label for="description">Descripción</label>
+                            <textarea name="description" placeholder="Escribe la descripción de la tarea">${task.description}</textarea>
+                            <span id="description-counter">0/150</span>
+                            <div id="btns">
+                                <input type="submit" name="cancel" value="Cancelar"/>
+                                <input type="submit" name="save" value="Guardar cambios"/>
+                            </div>
+                            <input type="hidden" name="id" value="${task.id}"/>
+                        </fieldset>
+                    </form>
+                </div>`;
+
+            modalContainer.innerHTML = modal;
+
+
+      })
+      .catch(error => console.log('error', error));
+    
+
+
+
+}
+
 let login = () =>{
 
     document.querySelector("#log-in form").addEventListener("submit", function(event) {
@@ -164,5 +217,5 @@ let login = () =>{
 
     event.preventDefault();
     });
-
+    
 }
