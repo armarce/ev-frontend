@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
+        <link rel="stylesheet" href="./css/log-in.css"/>
+    </head>
+    <body>
+        <main>
+            <section id="log-in">
+                <nav>
+                    <a href="log-in.html" class="link-log-in active">Iniciar sesión</a>
+                    <a href="#" class="link-register">Registrarme</a>
+                </nav>
+                <h1>Inicio de sesión</h1>
+                <form>
+                    <fieldset>
+                        <label for="email">Correo eletrónico</label>
+                        <input type="text" name="email" placeholder="Escribe tu correo electrónic"/>
+                        <label for="password">Contraseña</label>
+                        <input type="password" name="password" placeholder="Al menos 8 caracteres"/>
+                        <a href="#" class="link-recover">Olvidé mi contraseña</a>
+                        <input type="submit" id="submit" value="Aceptar"/>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+        <script src="./js/main.js"></script>
+        <script>
+            login();
+        </script>        
+    </body>
+</html>

@@ -1,0 +1,265 @@
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('./HelveticaNeueMedium.ttf');
+}
+
+:root{
+    --dark-blue: #0F0F2D;
+    --light-green: #2EC76D;
+    --white: #FFFFFF;
+    --black: #000000;
+    --stroke-cards: #E5E5E5;
+    --typography: #302F2F;
+    --dark-gray: #D3D3D3;
+    --gray: #CCCCCC;    
+    --tasks-green: #2EC76D;
+    --tasks-blue: #1AD3D3;
+    --tasks-orange: #FF8311;
+}
+html{
+    font-size: 62.5%;
+
+}
+body{
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: var(--typography);    
+}
+header{
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    gap: 1.4rem;
+    column-gap: 2.4rem;
+    align-items: center;
+    grid-template-areas: ". . . . . . . . . . . user"
+                         "title . . . . . . . . . search new-task";
+    grid-template-areas: repeat(12, 1fr);
+    grid-template-rows: 6rem 6rem;
+}
+header #user{
+    grid-area: user;
+    display: flex;
+    justify-content: end;
+    text-align: right;
+    width: 100%;
+    height: 100%;
+}
+header #user a{
+    display: block;
+    height: 5.6rem;
+    width: 5.6rem;
+    margin-right: 2rem;
+    background-image: url(../img/user.svg);
+    background-repeat: no-repeat;
+    background-color: var(--dark-blue);
+    background-position: center;
+    border-radius: 50%;
+}
+header h1{
+    grid-area: title;
+    font-size: 50px;
+    color: var(--dark-blue);
+}
+header input{
+    grid-area: search;
+    width: 100%;
+    height: 4.6rem;
+    box-sizing: border-box;
+    padding: 0 0 0 4.4rem;
+    border: 1px solid var(--gray);
+    background-image: url(../img/search.svg);
+    background-position: 1.3rem 1.3rem;
+    background-repeat: no-repeat;
+}
+::placeholder{
+    color: var(--gray);
+}
+header a#new-task{
+    grid-area: new-task;
+    width: 100%;
+    height: 4.6rem;
+    padding: 1.4rem 0 0 6.2rem;
+    box-sizing: border-box;
+    background-color: var(--tasks-green);
+    text-decoration: none;
+    color: var(--white);
+    background-image: url(../img/plus.svg);
+    background-position: 3rem 1rem;
+    background-repeat: no-repeat;
+}
+main{
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+main ul#tasks{
+    padding: 0;
+    margin: 0;
+    gap: 4rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(38rem, 1fr));
+}
+main ul#tasks li{
+    min-width: 38rem;
+    padding: 1rem 2rem 2rem 2rem;
+    border: 1px solid var(--gray);
+    border-radius: 0.4rem;
+    box-sizing: border-box;
+}
+main ul#tasks li h2{
+    font-size: 25px;
+    width: 24rem;
+    margin-bottom: 3rem;
+}
+main ul#tasks li span{
+    color: var(--gray);
+}
+main ul#tasks li select{
+    margin-top: 3rem;
+    padding: 1rem 2rem 1rem 1rem;
+    border: 1px solid var(--gray);
+}
+main ul#tasks li.start{
+    border-bottom: 4px solid var(--tasks-blue);
+}
+main ul#tasks li.paused{
+    border-bottom: 4px solid var(--tasks-orange);
+}
+main ul#tasks li.end{
+    border-bottom: 4px solid var(--tasks-green);
+}
+main ul#tasks li nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    height: 4rem;
+    margin: 2rem 0 4rem 0;
+}
+main ul#tasks li nav div{
+    display: flex;
+    justify-content: flex-end;
+    width: 6rem;
+}
+main ul#tasks li nav a{
+    height: 3rem;
+    width: 3rem;
+    display: block;
+    padding: 0.4rem;
+    box-sizing: border-box;
+}
+main ul#tasks li nav a.del{
+    background-image: url(../img/x.svg);
+    background-position: 3rem 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+main ul#tasks li nav a.del{
+    background-image: url(../img/x.svg);
+    background-position: 3rem 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+main ul#tasks li nav a.edit{
+    background-image: url(../img/edit.svg);
+    background-position: 3rem 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+main ul#tasks li nav a:hover{
+    border-bottom: 1px solid var(--gray);
+}
+
+#modal {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    display: none;
+}
+#modal-container {
+    padding: 2.4rem;
+    width: 42rem;
+    height: 44rem;
+    background: #f9f9f9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+#modal #modal-container #close{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    height: 3rem;
+    width: 3rem;
+    display: block;
+    padding: 0.4rem;
+    box-sizing: border-box;
+    background-image: url(../img/x.svg);
+    background-position: 3rem 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+#modal #modal-container h2{
+    color: var(--dark-blue);
+}
+#modal #modal-container fieldset{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0;
+    border: none;
+}
+#modal #modal-container fieldset input{
+    height: 5rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    border: 1px solid var(--gray);
+    box-sizing: border-box;
+    margin-top: 1rem;
+    border-radius: 0.6rem;
+}
+#modal #modal-container fieldset span{
+    margin: 1rem 0 2rem 0;
+    text-align: right;
+}
+#modal #modal-container fieldset textarea{
+    height: 10rem;
+    resize: none;
+    margin-top: 1.4rem;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 2rem 0 0 1rem;
+    border: 1px solid var(--gray);
+    border-radius: 0.6rem;
+}
+#modal #modal-container fieldset #btns{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+#modal #modal-container fieldset #btns input{
+    width: 18.5rem;
+    height: 4.6rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    border: none;
+}
+#modal #modal-container fieldset #btns input[name="cancel"]{
+    border: 1px solid #666;
+    color: #666;
+}
+#modal #modal-container fieldset #btns input[name="save"]{
+    background-color: var(--light-green);
+    color: var(--white);
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Tasks</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
+        <link rel="stylesheet" href="./css/tasks.css"/>
+    </head>
+    <body>
+        <header>
+            <div id="user"><a href="#"></a></div>
+            <a href="#" id="user"></a>
+            <h1>Tareas</h1>
+            <input type="search" placeholder="Buscar Tarea"/>
+            <a href="#" id="new-task">Crear nueva tarea</a>
+        </header>
+        <main>
+            <ul id="tasks">
+                <template>
+                    <li class="start">
+                        <nav><h2>Tare1</h2><div><a href="#" class="del"></a><a href="#" class="edit"></a></div></nav>
+                        <span>DESCRIPCIÓN</span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa
+                        </p>
+                        <select>
+                            <option value="3">Terminada</option>
+                            <option value="1">Iniciada</option>
+                            <option value="2">En pausa</option>
+                        </select>
+                    </li>
+                </template>   
+            </ul>
+        </main>
+        <div id="modal">
+            <div id="modal-container">
+                <a id="close">
+                </a>
+                <h2>Agregar tarea</h2>
+                <form>
+                    <fieldset>
+                        <label for="name">Nombre de la tarea</label>
+                        <input type="input" placeholder="Escribe el nombre de la tarea"/>
+                        <span id="name-counter">0/50</span>
+                        <label for="description">Descripción</label>
+                        <textarea name="description" placeholder="Escribe la descripción de la tarea"></textarea>
+                        <span id="description-counter">0/150</span>
+                        <div id="btns">
+                            <input type="submit" name="cancel" value="Cancelar"/>
+                            <input type="submit" name="save" value="Guardar cambios"/>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <script src="./js/main.js"></script>
+        <script>
+            listTasks();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('./HelveticaNeueMedium.ttf');
+}
+:root{
+    --dark-blue: #0F0F2D;
+    --light-green: #2EC76D;
+    --white: #FFFFFF;
+    --stroke-cards: #E5E5E5;
+    --typography: #302F2F;
+    --dark-gray: #D3D3D3; 
+    --gray: #CCCCCC;
+}
+html{
+    font-size: 62.5%;
+
+}
+body{
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: var(--typography);
+    background-image: url('../img/background-tl.svg'), url('../img/background-br.svg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: top left, bottom right;
+    background-attachment: fixed;
+
+}
+main{
+    display: grid;
+    height: 99vh;
+    grid-template-columns: 1fr;
+    vertical-align: middle;
+    position: relative;
+}
+#log-in{
+    position: absolute;
+    margin: auto;
+    align-self: center;
+    justify-self: center;
+    width: 34rem;
+    height: auto;
+    padding: 6rem;
+    box-shadow: 0px 6px 20px 6px rgba(100, 100, 111, 0.2);
+    background-color: var(--white);
+}
+#log-in nav{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0.8rem 0 6rem 0;
+    padding: 0 1rem 0 1rem;
+}
+#log-in h1{
+    color: #0F0F2D;
+    font-size: 25px;
+    padding-left: 1rem; 
+}
+#log-in nav a{
+    width: 50%;
+    width: 17rem;
+    height: 3.2rem;
+    padding: .8rem;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    background-color: var(--stroke-cards);
+    color: var(--typography);
+    font-size: 14px;
+}
+#log-in nav a:hover{
+    text-decoration: underline;
+}
+#log-in nav a.link-log-in{
+    border-radius: .6rem 0 0 .6rem;
+}
+#log-in nav a.link-register{
+    border-radius: 0 .6rem 0.6rem 0;
+}
+#log-in nav a.active{
+    background-color: var(--light-green);
+    color: var(--white);
+}
+#log-in fieldset{
+    display: grid;
+    grid-template-columns: 1fr;
+    border: none;
+    margin: 2.2rem 0 0 1rem;
+}
+#log-in fieldset label{
+    margin-bottom: 0.8rem;
+}
+#log-in fieldset input{
+    box-sizing: border-box;
+    padding: 1.4rem;
+    border: 1px solid var(--gray);
+    border-radius: 0.6rem;
+}
+#log-in fieldset input::placeholder{
+    color: #CCC;
+}
+#log-in fieldset a.link-recover{
+    font-size: 12px;
+    color: var(--typography);
+    text-align: right;
+    text-decoration: none;
+    margin: 1rem 0 4.2rem 0;
+}
+#log-in fieldset a.link-recover:hover{
+    text-decoration: underline;
+}
+#log-in fieldset input[name="email"]{
+    margin-bottom: 3rem;
+}
+#log-in fieldset input[name="password"]{
+    background-image: url(../img/eye.svg);
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: right;
+}
+#log-in fieldset input[type="submit"]{
+    background-color: var(--light-green);
+    color: var(--white);
+}
