@@ -192,11 +192,11 @@ main ul#tasks li nav a:hover{
     display: none;
 }
 #modal-container {
+    position: absolute;
     padding: 2.4rem;
     width: 42rem;
     height: 44rem;
     background: #f9f9f9;
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;

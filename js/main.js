@@ -23,7 +23,7 @@ let  listTasks = (name) =>{
             tasks = tasks.filter(task => task.name.toLowerCase().includes(name.toLowerCase()));
 
         }
-
+        
         for(let task of tasks){
             
             let taskClass = '';
@@ -191,7 +191,7 @@ let editTask = (id, reload) =>{
                             <textarea name="description" maxlength="150" placeholder="Escribe la descripción de la tarea">${task.description}</textarea>
                             <span id="description-counter">0/150</span>
                             <div id="btns">
-                                <input type="submit" name="cancel" value="Cancelar" onclick="editTask(${task.id}, true);"/>
+                                <input type="submit" name="cancel" value="Cancelar" onclick="closeModal();"/>
                                 <input type="submit" name="save" value="Guardar cambios" onclick="updateTask(${task.id});"/>
                             </div>
                         </fieldset>
@@ -298,7 +298,7 @@ let createTask = () => {
         .catch();
 
         event.preventDefault();
-
+        
     });
     
 }
